@@ -10,7 +10,7 @@ class TestController extends Controller
 
     public function index()
     {
-        echo 'test page '; 
+        echo 'my test page '; 
         exit; 
         // Get All Customers
         // get All Customers From Database

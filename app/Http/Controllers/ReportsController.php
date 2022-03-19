@@ -41,27 +41,33 @@ class ReportsController extends Controller
     }
 
 
-    public function show($id)
+    public function show(Request $request)
     {
+        
         // GET(id)
         // show each Reports by its ID from database
-        $data = Reports::find($id);
+        $this->validate($request, [
+            'report_id' => 'required',
+         ]);
+
+        $data = Reports::find($request->report_id);
         return response()->json(['status'=>'success', 'message'=>'Get Report Details Successfully', 'data'=>$data], 200);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         // echo '<pre>'; 
         // print_r($request->all());
         // exit; 
 
         $this->validate($request, [
+            'report_id' => 'required',
             'name' => 'required',
             'report_query' => 'required',
             'type' => 'required',
          ]);
 
-        $data = Reports::find($id);
+        $data = Reports::find($request->report_id);
         $data->name = $request->name;
         $data->report_query = $request->report_query;
         $data->type = $request->type;
@@ -71,11 +77,14 @@ class ReportsController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         // DELETE(id)
         // Delete by Id
-        $data = Reports::find($id);
+        $this->validate($request, [
+            'report_id' => 'required',
+         ]);
+        $data = Reports::find($request->report_id);
         $data->delete();
         return response()->json(['status'=>'success', 'message'=>'Report Deleted Successfully'], 200);
 

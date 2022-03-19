@@ -37,16 +37,19 @@ class WebhooksController extends Controller
     }
 
 
-    public function show($id)
+    public function show(Request $request)
     {
         // GET(id)
         // show each Webhooks by its ID from database
-        $data = Webhooks::find($id);
+        $this->validate($request, [
+            'webhook_id' => 'required',
+         ]);
+        $data = Webhooks::find($request->webhook_id);
         return response()->json(['status'=>'success', 'message'=>'Get Webhook Details Successfully', 'data'=>$data], 200);
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
 
         // echo '<pre>'; 
@@ -54,6 +57,7 @@ class WebhooksController extends Controller
         // exit; 
 
         $this->validate($request, [
+            'webhook_id' => 'required',
             'site_id' => 'required',
             'status' => 'required',
             'target' => 'required',
@@ -61,7 +65,7 @@ class WebhooksController extends Controller
             'events' => 'required',
          ]);
 
-        $data = Webhooks::find($id);
+        $data = Webhooks::find($request->webhook_id);
         $data->site_id = $request->site_id;
         $data->status = $request->status;
         $data->target = $request->target;
@@ -74,11 +78,14 @@ class WebhooksController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         // DELETE(id)
         // Delete by Id
-        $data = Webhooks::find($id);
+        $this->validate($request, [
+            'webhook_id' => 'required',
+         ]);
+        $data = Webhooks::find($request->webhook_id);
         $data->delete();
         return response()->json(['status'=>'success', 'message'=>'Webhook Deleted Successfully'], 200);
 

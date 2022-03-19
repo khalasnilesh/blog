@@ -25,10 +25,10 @@ $router->get('/test-page', 'TestController@index');
 // customers
 $router->get('/customers', 'CustomersController@index');	
 $router->post('/customers/create', 'CustomersController@store');
-$router->get('/customers/{id}', 'CustomersController@show');
-$router->post('/customers/update/{id}', 'CustomersController@update');
-$router->delete('/customers/delete/{id}', 'CustomersController@destroy');
-$router->post('/customers/delete', 'CustomersController@deleteMultiple');
+$router->post('/customers/details', 'CustomersController@show');
+$router->post('/customers/update', 'CustomersController@update');
+$router->post('/customers/delete', 'CustomersController@destroy');
+$router->post('/customers/delete-multiple', 'CustomersController@deleteMultiple');
 
 // customer-meta
 $router->get('/customer-meta', 'CustomerMetaController@index');
@@ -38,10 +38,10 @@ $router->post('/customer-meta/create', 'CustomerMetaController@store');
 // sites
 $router->get('/sites', 'SitesController@index');
 $router->post('/sites/create', 'SitesController@store');
-$router->get('/sites/{id}', 'SitesController@show');
-$router->post('/sites/update/{id}', 'SitesController@update');
-$router->delete('/sites/delete/{id}', 'SitesController@destroy');
-$router->post('/sites/delete', 'SitesController@deleteMultiple');
+$router->post('/sites/details', 'SitesController@show');
+$router->post('/sites/update', 'SitesController@update');
+$router->post('/sites/delete', 'SitesController@destroy');
+$router->post('/sites/delete-multiple', 'SitesController@deleteMultiple');
 
 // site-meta
 $router->get('/site-meta', 'SiteMetaController@index');
@@ -61,24 +61,24 @@ $router->post('/events/create', 'EventsController@store');
 // webhooks
 $router->get('/webhooks', 'WebhooksController@index');
 $router->post('/webhooks/create', 'WebhooksController@store');
-$router->get('/webhooks/{id}', 'WebhooksController@show');
-$router->post('/webhooks/update/{id}', 'WebhooksController@update');
-$router->delete('/webhooks/delete/{id}', 'WebhooksController@destroy');
-$router->post('/webhooks/delete', 'WebhooksController@deleteMultiple');
+$router->post('/webhooks/details', 'WebhooksController@show');
+$router->post('/webhooks/update', 'WebhooksController@update');
+$router->post('/webhooks/delete', 'WebhooksController@destroy');
+$router->post('/webhooks/delete-multiple', 'WebhooksController@deleteMultiple');
 
 // reports
 $router->get('/reports', 'ReportsController@index');
 $router->post('/reports/create', 'ReportsController@store');
-$router->get('/reports/{id}', 'WebhooksController@show');
-$router->post('/reports/update/{id}', 'ReportsController@update');
-$router->delete('/reports/delete/{id}', 'ReportsController@destroy');
-$router->post('/reports/delete', 'ReportsController@deleteMultiple');
+$router->post('/reports/details', 'ReportsController@show');
+$router->post('/reports/update', 'ReportsController@update');
+$router->post('/reports/delete', 'ReportsController@destroy');
+$router->post('/reports/delete-multiple', 'ReportsController@deleteMultiple');
 
 
 // users
 $router->get('/users', 'UsersController@index');
 $router->post('/users/create', 'UsersController@store');
-$router->get('/users/{id}', 'UsersController@show');
-$router->post('/users/update/{id}', 'UsersController@update');
-$router->delete('/users/delete/{id}', 'UsersController@destroy');
-$router->post('/users/delete', 'UsersController@deleteMultiple');
+$router->post('/users/details', 'UsersController@show');
+$router->post('/users/update', 'UsersController@update');
+$router->post('/users/delete', 'UsersController@destroy');
+$router->post('/users/delete-multiple', 'UsersController@deleteMultiple');

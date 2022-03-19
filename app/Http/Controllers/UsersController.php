@@ -25,7 +25,7 @@ class UsersController extends Controller
         // exit; 
 
         $this->validate($request, [
-            'username' => 'required',
+            'name' => 'required',
             'email' => 'required',
             'role' => 'required',
             'password' => 'required',
@@ -43,27 +43,31 @@ class UsersController extends Controller
     }
 
 
-    public function show($id)
+    public function show(Request $request)
     {
         // GET(id)
         // show each Users by its ID from database
-        $data = Users::find($id);
+        $this->validate($request, [
+            'user_id' => 'required',
+         ]);
+        $data = Users::find($request->user_id);
         return response()->json(['status'=>'success', 'message'=>'Get User Details Successfully', 'data'=>$data], 200);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         // echo '<pre>'; 
         // print_r($request->all());
         // exit; 
 
         $this->validate($request, [
+            'user_id' => 'required',
             'name' => 'required',
             'email' => 'required',
             'role' => 'required',
          ]);
 
-        $data = Users::find($id);
+        $data = Users::find($request->user_id);
         $data->name = $request->name;
         $data->email = $request->email;
         $data->role = $request->role;
@@ -73,11 +77,14 @@ class UsersController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         // DELETE(id)
         // Delete by Id
-        $data = Users::find($id);
+        $this->validate($request, [
+            'user_id' => 'required',
+         ]);
+        $data = Users::find($request->user_id);
         $data->delete();
         return response()->json(['status'=>'success', 'message'=>'User Deleted Successfully'], 200);
 

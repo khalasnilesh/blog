@@ -52,21 +52,23 @@ class SitesController extends Controller
     }
 
 
-    public function show($id)
+    public function show(Request $request)
     {
-        // GET(id)
-        // show each Sites by its ID from database
-        $data = Sites::find($id);
+        $this->validate($request, [
+            'site_id' => 'required',
+         ]);
+        $data = Sites::find($request->site_id);
         return response()->json(['status'=>'success', 'message'=>'Get Site Details Successfully', 'data'=>$data], 200);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         // echo '<pre>'; 
         // print_r($request->all());
         // exit; 
 
         $this->validate($request, [
+            'site_id' => 'required',
             'site_key' => 'required',
             'wp_version' => 'required',
             'host' => 'required',
@@ -78,7 +80,7 @@ class SitesController extends Controller
             'last_heard_from' => 'required',
          ]);
 
-        $data = Sites::find($id);
+        $data = Sites::find($request->site_id);
         $data->site_key = $request->site_key;
         $data->wp_version = $request->wp_version;
         $data->host = $request->host;
@@ -93,11 +95,13 @@ class SitesController extends Controller
         return response()->json(['status'=>'success', 'message'=>'Site Updated Successfully', 'data'=>$data], 200);
     }
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        // DELETE(id)
-        // Delete by Id
-        $product = Sites::find($id);
+
+        $this->validate($request, [
+            'site_id' => 'required',
+         ]);
+        $product = Sites::find($request->site_id);
         $product->delete();
         return response()->json(['status'=>'success', 'message'=>'Site Deleted Successfully'], 200);
 
