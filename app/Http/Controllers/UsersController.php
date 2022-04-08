@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Users;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -35,7 +36,7 @@ class UsersController extends Controller
         $data->name = $request->name;
         $data->email = $request->email;
         $data->role = $request->role;
-        $data->password = $request->password;
+        $data->password = Hash::make($request->password);
         $data->save();
         
         return response()->json(['status'=>'success', 'message'=>'User Created Successfully', 'data'=>$data], 200);
