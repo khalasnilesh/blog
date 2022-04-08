@@ -21,7 +21,6 @@ $router->get('/', function () use ($router) {
 });
 $router->get('/test-page', 'TestController@index');
 
-
 // customers
 $router->get('/customers', 'CustomersController@index');	
 $router->post('/customers/create', 'CustomersController@store');
@@ -82,3 +81,18 @@ $router->post('/users/details', 'UsersController@show');
 $router->post('/users/update', 'UsersController@update');
 $router->post('/users/delete', 'UsersController@destroy');
 $router->post('/users/delete-multiple', 'UsersController@deleteMultiple');
+
+
+
+/////////////////////////////// 
+///// Admin Panel Routes //////
+/////////////////////////////// 
+
+$router->get('/login', 'AuthController@login');	
+$router->post('/postlogin', 'AuthController@postlogin');	
+$router->get('/register', 'AuthController@register');	
+$router->post('/postRegister', 'AuthController@postRegister');	
+
+$router->get('/', 'DashboardController@index');	
+$router->get('/user-listing', 'ManageUsersController@index');
+
